@@ -1,54 +1,54 @@
 ---
-title: Criando a pull request
+title: Abrindo um pull request
 content_type: concept
 weight: 10
 card:
-  name: contribute
+  name: contribuir
   weight: 40
 ---
 
 <!-- overview -->
 
-{{< note >}}
-**Code developers**: If you are documenting a new feature for an
-upcoming Kubernetes release, see
-[Document a new feature](/docs/contribute/new-content/new-features/).
+{{< Observação >}}
+**Desenvolvedores de código**: Se você estiver documentando uma nova funcionalidade para uma
+versão futura do Kubernetes, consulte
+[Documente uma nova funcionalidade](/docs/contribute/new-content/new-features/).
 {{< /note >}}
 
-Para contribuir com novas páginas de conteúdo ou melhorar as páginas de conteúdo existentes, crie um pull request (PR).
+Para contribuir com novas páginas de conteúdo ou melhorar as páginas de conteúdo existentes, abra um pull request (PR).
 Certifique-se de seguir todos os requisitos na seção
 [Antes de começar](/docs/contribute/new-content/) .
 
 Se a alteração for pequena ou você não estiver familiarizado com o git, leia
 [Alterações usando o GitHub](#changes-using-github) para saber como editar uma página.
 
-Se suas alterações forem grandes, read [Work from a local fork](#fork-the-repo) to learn how to make
-changes locally on your computer.
+Se suas alterações forem grandes, leia [Trabalhe a partir de um fork local](#fork-the-repo) para saber como fazer
+alterações localmente em seu computador.
 
 <!-- body -->
 
-## Changes using GitHub
+## Mudanças usando o GitHub
 
-If you're less experienced with git workflows, here's an easier method of
-opening a pull request. Figure 1 outlines the steps and the details follow.
+Se você tem menos experiência com fluxos de execução do git, este é um método mais fácil para abrir um pull request.
+A figura 1 descreve as etapas e os detalhes estão a seguir.
 
 <!-- See https://github.com/kubernetes/website/issues/28808 for live-editor URL to this figure -->
 <!-- You can also cut/paste the mermaid code into the live editor at https://mermaid-js.github.io/mermaid-live-editor to play around with it -->
 
 {{< mermaid >}}
 flowchart LR
-A([fa:fa-user New<br>Contributor]) --- id1[(K8s/Website<br>GitHub)]
-subgraph tasks[Changes using GitHub]
+A([fa:fa-user Novo<br>Contribuidor]) --- id1[(K8s/Website<br>GitHub)]
+subgraph tasks[Mudanças usando GitHub]
 direction TB
     0[ ] -.-
-    1[1. Edit this page] --> 2[2. Use GitHub markdown<br>editor to make changes]
-    2 --> 3[3. fill in Propose file change]
+    1[1. Clique em Edit this page] --> 2[2. Use o editor de markdown<br>no GitHub para fazer mudanças]
+    2 --> 3[3. preencha o <br> Propose file change]
 
 end
 subgraph tasks2[ ]
 direction TB
-4[4. select Propose file change] --> 5[5. select Create pull request] --> 6[6. fill in Open a pull request]
-6 --> 7[7. select Create pull request] 
+4[4. selecione Propose file change] --> 5[5. selecione Create pull request] --> 6[6. preencha Open a pull request]
+6 --> 7[7. selecione Create pull request] 
 end
 
 id1 --> tasks --> tasks2
@@ -63,86 +63,84 @@ class tasks,tasks2 white
 class id1 k8s
 {{</ mermaid >}}
 
-Figure 1. Steps for opening a PR using GitHub.
+Figure 1. Etapas para abrir um PR usando o GitHub.
 
-1. On the page where you see the issue, select the pencil icon at the top right.
-   You can also scroll to the bottom of the page and select **Edit this page**.
+1. Na página onde você vê o issue, selecione o ícone de lápis no canto superior direito.
+   Você também pode rolar até a parte inferior da página e selecionar **Edit this page**.
 
-1. Make your changes in the GitHub markdown editor.
+2. Faça suas alterações no editor de markdown do GitHub.
 
-1. Below the editor, fill in the **Propose file change** form.
-   In the first field, give your commit message a title.
-   In the second field, provide a description.
-
-   {{< note >}}
-   Do not use any [GitHub Keywords](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
-   in your commit message. You can add those to the pull request description later.
+3. Abaixo do editor, preencha o formulário **Propose file change**.
+   No primeiro campo, dê um título ao seu commit.
+   No segundo campo, forneça uma descrição.
+   
+   {{< Observação >}}
+   não use nenhuma [palavra-chave do GitHub](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
+   no seu commit. Você pode adicioná-las à descrição do pull request depois.
    {{< /note >}}
 
-1. Select **Propose file change**.
+4. Selecione **Propose file change**.
 
-1. Select **Create pull request**.
+5. Selecione **Create pull request**.
 
-1. The **Open a pull request** screen appears. Fill in the form:
+6. A tela **Open a pull request** aparecerá. Preencha o formulário:
 
-   - The **Subject** field of the pull request defaults to the commit summary.
-     You can change it if needed.
-   - The **Body** contains your extended commit message, if you have one,
-     and some template text. Add the
-     details the template text asks for, then delete the extra template text.
-   - Leave the **Allow edits from maintainers** checkbox selected.
+   - O campo **Subject** do pull request automaticamente exibe o resumo do commit.
+     Você pode alterá-lo, se necessário.
+   - O **Corpo** contém a mensagem do seu commit por extenso, caso você tiver uma,
+     e um texto padrão. Adicione
+     os detalhes necessários e depois remova o texto padrão.
+   - Deixe o campo de seleção **Allow edits from maintainers** marcado.
 
-   {{< note >}}
-   PR descriptions are a great way to help reviewers understand your change.
-   For more information, see [Opening a PR](#open-a-pr).
+   {{< Observação >}}
+   as descrições do PR são uma ótima maneira de ajudar os revisores a entenderem sua alteração.
+   Para mais informações, consulte [Abrindo um PR](#open-a-pr).
    {{</ note >}}
 
-1. Select **Create pull request**.
+1. Selecione **Create pull request**.
 
-### Addressing feedback in GitHub
+### Recebendo feedback no GitHub
 
-Before merging a pull request, Kubernetes community members review and
-approve it. The `k8s-ci-robot` suggests reviewers based on the nearest
-owner mentioned in the pages. If you have someone specific in mind,
-leave a comment with their GitHub username in it.
+Antes de fazer o merge de um pull request, os membros da comunidade do Kubernetes devem revisá-lo e aprová-lo.
+O `k8s-ci-robot` sugere revisores baseado no dono mencionado na página mais próximo.
+Se você tem alguém específico em mente, deixe um comentário com o nome de usuário do GitHub da pessoa em mente.
 
-If a reviewer asks you to make changes:
+Se um revisor solicitar que você faça alterações:
 
-1. Go to the **Files changed** tab.
-1. Select the pencil (edit) icon on any files changed by the pull request.
-1. Make the changes requested.
-1. Commit the changes.
+1. Vá para a aba **Files changed**.
+1. Selecione o ícone de lápis (editar) em todos os arquivos alterados pelo pull request.
+1. Faça as alterações solicitadas.
+1. Confirme as alterações fazendo um commit.
 
-If you are waiting on a reviewer, reach out once every 7 days. You can also post a message in the
-`#sig-docs` Slack channel.
+Se você estiver esperando por um revisor, entre em contato uma vez a cada 7 dias. Você também pode postar uma mensagem no
+`#sig-docs` canal do Slack.
 
-When your review is complete, a reviewer merges your PR and your changes go live a few minutes later.
+Quando sua revisão estiver concluída, um revisor fará um merge do seu PR e suas alterações serão publicadas depois de alguns minutos.
 
-## Work from a local fork {#fork-the-repo}
+## Trabalhe a partir de um fork local {#fork-the-repo}
 
-If you're more experienced with git, or if your changes are larger than a few lines,
-work from a local fork.
+Se você tiver experiência com o git ou se suas alterações forem maiores do que algumas linhas, trabalhe em um fork local.
 
-Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed
-on your computer. You can also use a git UI application.
+Certifique-se de ter o [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instalado no seu computador.
+Você também pode usar uma interface de aplicação do git.
 
-Figure 2 shows the steps to follow when you work from a local fork. The details for each step follow.
+A figura 2 mostra as etapas a serem seguidas quando trabalhando em um fork local. Os detalhes de cada etapa estão a seguir.
 
 <!-- See https://github.com/kubernetes/website/issues/28808 for live-editor URL to this figure -->
 <!-- You can also cut/paste the mermaid code into the live editor at https://mermaid-js.github.io/mermaid-live-editor to play around with it -->
 
 {{< mermaid >}}
 flowchart LR
-1[Fork the K8s/website<br>repository] --> 2[Create local clone<br>and set upstream]
-subgraph changes[Your changes]
+1[Faça um fork do repositório<br>do K8s/website] --> 2[Crie um clone local<br>e defina-o upstream]
+subgraph changes[Suas alterações]
 direction TB
 S[ ] -.-
-3[Create a branch<br>example: my_new_branch] --> 3a[Make changes using<br>text editor] --> 4["Preview your changes<br>locally using Hugo<br>(localhost:1313)<br>or build container image"]
+3[Crie uma branch<br>exemplo: minha_nova_branch] --> 3a[Faça alterações usando<br>o editor de texto] --> 4["Veja as alterações<br>localmente usando Hugo<br>(localhost:1313) ou<br>construa uma imagem do contêiner"]
 end
 subgraph changes2[Commit / Push]
 direction TB
 T[ ] -.-
-5[Commit your changes] --> 6[Push commit to<br>origin/my_new_branch]
+5[Faça um commit das alterações] --> 6[Faça um push do commit para<br>origin/minha_nova_branch]
 end
 
 2 --> changes --> changes2
@@ -156,24 +154,24 @@ class S,T spacewhite
 class changes,changes2 white
 {{</ mermaid >}}
 
-Figure 2. Working from a local fork to make your changes.
+Figura 2. Trabalhando a partir de um fork local para fazer suas alterações.
 
-### Fork the kubernetes/website repository
+### Faça um fork do repositório kubernetes/website
 
-1. Navigate to the [`kubernetes/website`](https://github.com/kubernetes/website/) repository.
-1. Select **Fork**.
+1. Navegue até o repositório [`kubernetes/website`](https://github.com/kubernetes/website/).
+2. Selecione **Fork**.
 
-### Create a local clone and set the upstream
+### Crie um clone local e defina-o upstream
 
-1. In a terminal window, clone your fork and update the [Docsy Hugo theme](https://github.com/google/docsy#readme):
+1. Em uma janela de terminal, clone seu fork e atualize o [tema Docsy Hugo](https://github.com/google/docsy#readme):
 
    ```shell
-   git clone git@github.com/<github_username>/website
+   git clone git@github.com/<nome_usuário_github>/website
    cd website
    git submodule update --init --recursive --depth 1
    ```
 
-1. Navigate to the new `website` directory. Set the `kubernetes/website` repository as the `upstream` remote:
+2. Navegue até o novo diretório `website`. Defina o `kubernetes/website` repositório como `upstream` remoto:
 
    ```shell
    cd website
@@ -181,13 +179,13 @@ Figure 2. Working from a local fork to make your changes.
    git remote add upstream https://github.com/kubernetes/website.git
    ```
 
-1. Confirm your `origin` and `upstream` repositories:
+3. Confirme seus repositórios `origin` e `upstream`:
 
    ```shell
    git remote -v
    ```
 
-   Output is similar to:
+   O output deve ser semelhante a:
 
    ```none
    origin	git@github.com:<github_username>/website.git (fetch)
@@ -196,18 +194,18 @@ Figure 2. Working from a local fork to make your changes.
    upstream	https://github.com/kubernetes/website.git (push)
    ```
 
-1. Fetch commits from your fork's `origin/main` and `kubernetes/website`'s `upstream/main`:
+4. Faça um fetch dos commits dos forks `origin/main` e `kubernetes/website` via `upstream/main`:
 
    ```shell
    git fetch origin
    git fetch upstream
    ```
 
-   This makes sure your local repository is up to date before you start making changes.
+   Isso garante que seu repositório local esteja atualizado antes de você começar a fazer alterações.
 
-   {{< note >}}
-   This workflow is different than the
-   [Kubernetes Community GitHub Workflow](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md).
+   {{< Observação >}}
+   Esse fluxo de execução é diferente do 
+   [fluxo de execução GitHub da comunidade do Kubernetes](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md).
    You do not need to merge your local copy of `main` with `upstream/main` before pushing updates
    to your fork.
    {{< /note >}}
