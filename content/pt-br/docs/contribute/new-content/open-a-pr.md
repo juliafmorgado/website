@@ -9,7 +9,7 @@ card:
 
 <!-- overview -->
 
-{{< Observação >}}
+{{< note >}}
 **Desenvolvedores de código**: Se você estiver documentando uma nova funcionalidade para uma
 versão futura do Kubernetes, consulte
 [Documente uma nova funcionalidade](/docs/contribute/new-content/new-features/).
@@ -74,7 +74,7 @@ Figure 1. Etapas para abrir um PR usando o GitHub.
    No primeiro campo, dê um título ao seu commit.
    No segundo campo, forneça uma descrição.
    
-   {{< Observação >}}
+   {{< note >}}
    não use nenhuma [palavra-chave do GitHub](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
    no seu commit. Você pode adicioná-las à descrição do pull request depois.
    {{< /note >}}
@@ -92,7 +92,7 @@ Figure 1. Etapas para abrir um PR usando o GitHub.
      os detalhes necessários e depois remova o texto padrão.
    - Deixe o campo de seleção **Allow edits from maintainers** marcado.
 
-   {{< Observação >}}
+   {{< note >}}
    as descrições do PR são uma ótima maneira de ajudar os revisores a entenderem sua alteração.
    Para mais informações, consulte [Abrindo um PR](#open-a-pr).
    {{</ note >}}
@@ -203,7 +203,7 @@ Figura 2. Trabalhando a partir de um fork local para fazer suas alterações.
 
    Isso garante que seu repositório local esteja atualizado antes que você começe a fazer alterações.
 
-   {{< Observação >}}
+   {{< note >}}
    Esse fluxo de execução é diferente do 
    [fluxo de execução GitHub da comunidade do Kubernetes](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md).
    Você não precisa mesclar sua cópia local `main` com `upstream/main` antes de enviar atualizações para seu fork.
@@ -271,7 +271,7 @@ Quando estiver pronto para abrir um pull request, confirme suas alterações.
    git commit -m "Sua mensagem de commit"
    ```
 
-   {{< Observação >}}
+   {{< note >}}
    não use nenhuma [palavra-chave do GitHub](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
    em sua mensagem de commit. Você pode adicioná-las à descrição do pull request posteriormente.
    {{< /note >}}
@@ -292,7 +292,7 @@ Você pode criar a imagem do contêiner do site ou executar o Hugo localmente. A
 {{< tabs name="tab_with_hugo" >}}
 {{% tab name="Hugo em um contêiner" %}}
 
-{{< Observação >}}
+{{< note >}}
 Os comandos abaixo usam o Docker como mecanismo de contêiner padrão. Defina a variável de ambiente `CONTAINER_ENGINE` para substituir esse comportamento.
 {{< /note >}}
 
@@ -419,7 +419,7 @@ O GitHub também atribui rótulos automaticamente a um PR para ajudar os revisor
 
 3. Use `git push origin <minha_nova_branch>` para fazer um push de suas alterações e executar novamente os testes do Netlify.
 
-   {{< Observação >}}
+   {{< note >}}
    se você usar `git commit -m` ao invés de emendar, você deverá fazer um [squash dos commits](#squashing-commits) antes de fazer um merge.
    {{< /note >}}
 
@@ -441,7 +441,7 @@ O GitHub também atribui rótulos automaticamente a um PR para ajudar os revisor
 
 #### Fazer o merge de conflitos e rebase
 
-{{< Observação >}}
+{{< note >}}
 Para mais informações, consulte [Git Branching - Básico de Branching e Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts),
 [Merging Avançado](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging), ou peça ajuda no canal do Slack 
 `#sig-docs`.
@@ -480,7 +480,7 @@ Se outro colaborador fizer alterações e commits no mesmo arquivo em outro PR, 
 4. Abra cada arquivo em conflito e procure os marcadores de conflito: `>>>`, `<<<`, e `===`.
    Resolva o conflito e exclua o marcador de conflito.
 
-   {{< Observação >}}
+   {{< note >}}
    Para mais informações, consulte [Como os conflitos são apresentados](https://git-scm.com/docs/git-merge#_how_conflicts_are_presented).
    {{< /note >}}
 
