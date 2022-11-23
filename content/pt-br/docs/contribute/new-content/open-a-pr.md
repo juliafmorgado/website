@@ -201,164 +201,154 @@ Figura 2. Trabalhando a partir de um fork local para fazer suas alterações.
    git fetch upstream
    ```
 
-   Isso garante que seu repositório local esteja atualizado antes de você começar a fazer alterações.
+   Isso garante que seu repositório local esteja atualizado antes que você começe a fazer alterações.
 
    {{< Observação >}}
    Esse fluxo de execução é diferente do 
    [fluxo de execução GitHub da comunidade do Kubernetes](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md).
-   You do not need to merge your local copy of `main` with `upstream/main` before pushing updates
-   to your fork.
+   Você não precisa mesclar sua cópia local `main` com `upstream/main` antes de enviar atualizações para seu fork.
    {{< /note >}}
 
-### Create a branch
+### Crie uma branch
 
-1. Decide which branch base to your work on:
+1. Decida em qual base da branch você trabalhará:
 
-   - For improvements to existing content, use `upstream/main`.
-   - For new content about existing features, use `upstream/main`.
-   - For localized content, use the localization's conventions. For more information, see
-     [localizing Kubernetes documentation](/docs/contribute/localization/).
-   - For new features in an upcoming Kubernetes release, use the feature branch. For more
-     information, see [documenting for a release](/docs/contribute/new-content/new-features/).
-   - For long-running efforts that multiple SIG Docs contributors collaborate on,
-     like content reorganization, use a specific feature branch created for that effort.
+   - Para melhorias no conteúdo existente, use `upstream/main`.
+   - Para conteúdo novo sobre recursos existentes, use `upstream/main`.
+   - Para traduções, use as convenções de localização. Para mais informações, consulte a 
+     [documentação de localização do Kubernetes](/docs/contribute/localization/).
+   - Para novas funcionalidades em uma próxima versão do Kubernetes, use a branch de funcionalidades. Para mais informações, consulte [a documentação de uma nova versão](/docs/contribute/new-content/new-features/).
+   - Para esforços de longa duração em que vários colaboradores do SIG Docs colaboram, como reorganização de conteúdo, use uma branch de funcionalidades específica criada para esse esforço.
 
-   If you need help choosing a branch, ask in the `#sig-docs` Slack channel.
+   Se precisar de ajuda para escolher uma branch, pergunte no `#sig-docs` canal do Slack.
 
-1. Create a new branch based on the branch identified in step 1. This example assumes the base
-   branch is `upstream/main`:
+2. Crie uma nova branch com base na branch identificada na etapa 1.  Este exemplo assume que a branch base é `upstream/main`:
 
    ```shell
    git checkout -b <my_new_branch> upstream/main
    ```
 
-1. Make your changes using a text editor.
+3. Faça suas alterações usando um editor de texto.
 
-At any time, use the `git status` command to see what files you've changed.
+A qualquer momento, use o commando `git status` para ver quais arquivos você alterou.
 
-### Commit your changes
+### Faça um commit das suas alterações
 
-When you are ready to submit a pull request, commit your changes.
+Quando estiver pronto para abrir um pull request, confirme suas alterações.
 
-1. In your local repository, check which files you need to commit:
+1. Em seu repositório local, verifique quais arquivos precisam ser feitos um commit:
 
    ```shell
    git status
    ```
 
-   Output is similar to:
+   O resultado é similar a:
 
    ```none
-   On branch <my_new_branch>
-   Your branch is up to date with 'origin/<my_new_branch>'.
+   On branch <minha_nova_branch>
+   Your branch is up to date with 'origin/<minha_nova_branch>'.
 
    Changes not staged for commit:
-   (use "git add <file>..." to update what will be committed)
-   (use "git checkout -- <file>..." to discard changes in working directory)
+   (use "git add <arquivo>..." to update what will be committed)
+   (use "git checkout -- <arquivo>..." to discard changes in working directory)
 
    modified:   content/en/docs/contribute/new-content/contributing-content.md
 
    no changes added to commit (use "git add" and/or "git commit -a")
    ```
 
-1. Add the files listed under **Changes not staged for commit** to the commit:
+2. Adicione os arquivos listados em **Changes not staged for commit** ao commit:
 
    ```shell
-   git add <your_file_name>
+   git add <nome_do_seu_arquivo>
    ```
 
-   Repeat this for each file.
+   Repita isso para cada arquivo.
 
-1. After adding all the files, create a commit:
+1. Depois de adicionar todos os arquivos, faça um commit:
 
    ```shell
-   git commit -m "Your commit message"
+   git commit -m "Sua mensagem de commit"
    ```
 
-   {{< note >}}
-   Do not use any [GitHub Keywords](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
-   in your commit message. You can add those to the pull request
-   description later.
+   {{< Observação >}}
+   não use nenhuma [palavra-chave do GitHub](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
+   em sua mensagem de commit. Você pode adicioná-las à descrição do pull request posteriormente.
    {{< /note >}}
 
-1. Push your local branch and its new commit to your remote fork:
+3. Faça um push da sua branch local e seu novo commit para seu fork remoto:
 
    ```shell
-   git push origin <my_new_branch>
+   git push origin <minha_nova_branch>
    ```
 
-### Preview your changes locally {#preview-locally}
+### Visualize suas alterações localmente {#preview-locally}
 
-It's a good idea to preview your changes locally before pushing them or opening a pull request.
-A preview lets you catch build errors or markdown formatting problems.
+É uma boa ideia visualizar suas alterações localmente antes de fazer um push ou abrir uma pull request.
+Uma visualização permite detectar erros de compilação ou problemas de formatação de markdown.
 
-You can either build the website's container image or run Hugo locally. Building the container
-image is slower but displays [Hugo shortcodes](/docs/contribute/style/hugo-shortcodes/), which can
-be useful for debugging.
+Você pode criar a imagem do contêiner do site ou executar o Hugo localmente. A construção da imagem do contêiner é mais lenta, mas exibe [códigos de acesso Hugo](/docs/contribute/style/hugo-shortcodes/), que podem ser úteis para depuração.
 
 {{< tabs name="tab_with_hugo" >}}
-{{% tab name="Hugo in a container" %}}
+{{% tab name="Hugo em um contêiner" %}}
 
-{{< note >}}
-The commands below use Docker as default container engine. Set the `CONTAINER_ENGINE` environment
-variable to override this behaviour.
+{{< Observação >}}
+Os comandos abaixo usam o Docker como mecanismo de contêiner padrão. Defina a variável de ambiente `CONTAINER_ENGINE` para substituir esse comportamento.
 {{< /note >}}
 
-1. Build the container image locally  
-   _You only need this step if you are testing a change to the Hugo tool itself_
+1. Crie a imagem do contêiner localmente  
+   _Você só precisa desta etapa se estiver testando uma alteração na própria ferramenta Hugo_
 
    ```shell
-   # Run this in a terminal (if required)
+   # Execute isto em um terminal (se necessário)
    make container-image
    ```
 
-1. Start Hugo in a container:
+2. Inicie o Hugo em um contêiner:
 
    ```shell
-   # Run this in a terminal
+   # Execute isto em um terminal
    make container-serve
    ```
 
-1. In a web browser, navigate to `https://localhost:1313`. Hugo watches the
-   changes and rebuilds the site as needed.
+3. Em um navegador da Web, navegue até `https://localhost:1313`. Hugo observa as mudanças e reconstrói o site conforme necessário.
 
-1. To stop the local Hugo instance, go back to the terminal and type `Ctrl+C`,
-   or close the terminal window.
+4. Para interromper a instância local do Hugo, volte ao terminal e digite `Ctrl+C`,
+ou feche a janela do terminal.
 
 {{% /tab %}}
-{{% tab name="Hugo on the command line" %}}
+{{% tab name="Hugo na linha de comando" %}}
 
-Alternately, install and use the `hugo` command on your computer:
+Como alternativa, instale e use o comando `hugo` em seu computador:
 
-1. Install the [Hugo](https://gohugo.io/getting-started/installing/) version specified in
+1. Instale a versão do [Hugo](https://gohugo.io/getting-started/installing/) especificada em
    [`website/netlify.toml`](https://raw.githubusercontent.com/kubernetes/website/main/netlify.toml).
 
-1. If you have not updated your website repository, the `website/themes/docsy` directory is empty.
-   The site cannot build without a local copy of the theme. To update the website theme, run:
+2. Se você não atualizou o repositório do site, o `website/themes/docsy` diretório deve estar vazio.
+   O site não pode ser construído sem uma cópia local do tema. Para atualizar o tema do site, execute:
 
    ```shell
    git submodule update --init --recursive --depth 1
    ```
 
-1. In a terminal, go to your Kubernetes website repository and start the Hugo server:
+3. Em um terminal, acesse o repositório do site do Kubernetes e inicie o servidor Hugo:
 
    ```shell
-   cd <path_to_your_repo>/website
+   cd <caminho_para_seu_repositório>/website
    hugo server --buildFuture
    ```
 
-1. In a web browser, navigate to `https://localhost:1313`. Hugo watches the
-   changes and rebuilds the site as needed.
+4. Em um navegador da Web, navegue até `https://localhost:1313`. Hugo observa as mudanças e reconstrói o site conforme necessário.
 
-1. To stop the local Hugo instance, go back to the terminal and type `Ctrl+C`,
-   or close the terminal window.
+5. Para interromper a instância local do Hugo, volte ao terminal e digite `Ctrl+C`,
+   ou feche a janela do terminal.
 
 {{% /tab %}}
 {{< /tabs >}}
 
-### Open a pull request from your fork to kubernetes/website {#open-a-pr}
+### Abra um pull request do seu fork para o kubernetes/website {#open-a-pr}
 
-Figure 3 shows the steps to open a PR from your fork to the K8s/website. The details follow.
+A Figura 3 mostra as etapas para abrir um PR do seu fork para o K8s/site. Os detalhes seguem.
 
 <!-- See https://github.com/kubernetes/website/issues/28808 for live-editor URL to this figure -->
 <!-- You can also cut/paste the mermaid code into the live editor at https://mermaid-js.github.io/mermaid-live-editor to play around with it -->
@@ -367,15 +357,15 @@ Figure 3 shows the steps to open a PR from your fork to the K8s/website. The det
 flowchart LR
 subgraph first[ ]
 direction TB
-1[1. Go to K8s/website repository] --> 2[2. Select New Pull Request]
-2 --> 3[3. Select compare across forks]
-3 --> 4[4. Select your fork from<br>head repository drop-down menu]
+1[1. Vá para o repositório do K8s/site] --> 2[2. Selecione 'New Pull Request']
+2 --> 3[3. Selecione 'compare across forks']
+3 --> 4[4. Selecione seu fork no menu<br>suspenso do seu repositório principal]
 end
 subgraph second [ ]
 direction TB
-5[5. Select your branch from<br>the compare drop-down menu] --> 6[6. Select Create Pull Request]
-6 --> 7[7. Add a description<br>to your PR]
-7 --> 8[8. Select Create pull request]
+5[5. Selecione sua branch do<br> menu suspenso 'compare'] --> 6[6. Selecione 'Create Pull Request']
+6 --> 7[7. Addicione uma descrição<br>ao seu PR]
+7 --> 8[8. Selecione 'Create pull request']
 end
 
 first --> second
@@ -386,171 +376,162 @@ class 1,2,3,4,5,6,7,8 grey
 class first,second white
 {{</ mermaid >}}
 
-Figure 3. Steps to open a PR from your fork to the K8s/website.
+Figure 3. Etapas para abrir um PR do seu fork para o K8s/site.
 
-1. In a web browser, go to the [`kubernetes/website`](https://github.com/kubernetes/website/) repository.
-1. Select **New Pull Request**.
-1. Select **compare across forks**.
-1. From the **head repository** drop-down menu, select your fork.
-1. From the **compare** drop-down menu, select your branch.
-1. Select **Create Pull Request**.
-1. Add a description for your pull request:
+1. Em um navegador da Web, acesse o repositório [`kubernetes/website`](https://github.com/kubernetes/website/).
+1. Selecione **New Pull Request**.
+1. Selecione **compare across forks**.
+1. No menu suspenso do **repositório principal**, selecione seu fork.
+1. No menu suspenso de **comparação** selecione sua branch.
+1. Selecione **Create Pull Request**.
+1. Adicione uma descrição para seu pull request:
 
-    - **Title** (50 characters or less): Summarize the intent of the change.
-    - **Description**: Describe the change in more detail.
+    - **Título** (50 caracteres ou menos): Resuma a intenção por trás da alteração.
+    - **Descrição**: Descreva a alteração com mais detalhes.
 
-      - If there is a related GitHub issue, include `Fixes #12345` or `Closes #12345` in the
-        description. GitHub's automation closes the mentioned issue after merging the PR if used.
-        If there are other related PRs, link those as well.
-      - If you want advice on something specific, include any questions you'd like reviewers to
-        think about in your description.
+      - Se houver um problema relacionado ao GitHub, inclua `Fixes #12345` ou `Closes #12345` na descrição. A automação do GitHub fecha o problema mencionado após fazer um merge do PR, se tiver sido usado. Se houver outros PRs relacionados, vincule-os também.
+      - Se você quiser conselhos sobre algo específico, inclua as perguntas sobre as quais gostaria que os revisores refletissem na descrição.
 
-1. Select the **Create pull request** button.
+1. Selecione o botão **Create pull request**.
 
-Congratulations! Your pull request is available in [Pull requests](https://github.com/kubernetes/website/pulls).
+Parabéns! Seu pull request está disponível em [Pull requests](https://github.com/kubernetes/website/pulls).
 
-After opening a PR, GitHub runs automated tests and tries to deploy a preview using
+Depois de abrir um PR, o GitHub executa testes automatizados e tenta implantar uma visualização usando o 
 [Netlify](https://www.netlify.com/).
 
-- If the Netlify build fails, select **Details** for more information.
-- If the Netlify build succeeds, select **Details** opens a staged version of the Kubernetes
-  website with your changes applied. This is how reviewers check your changes.
+- Se a compilação do Netlify falhar, selecione **Details** para obter mais informações.
+- Se a compilação do Netlify for bem-sucedida, selecione **Details** para abrir uma versão teste do site do Kubernetes com suas alterações aplicadas. É assim que os revisores verificam suas alterações.
 
-GitHub also automatically assigns labels to a PR, to help reviewers. You can add them too, if
-needed. For more information, see [Adding and removing issue labels](/docs/contribute/review/for-approvers/#adding-and-removing-issue-labels).
+O GitHub também atribui rótulos automaticamente a um PR para ajudar os revisores. Você também pode adicioná-los, se necessário. Para obter mais informações, consulte [Adicionando e removendo rótulos de issues](/docs/contribute/review/for-approvers/#adding-and-removing-issue-labels).
 
-### Addressing feedback locally
+### Abordando feedback localmente
 
-1. After making your changes, amend your previous commit:
+1. Depois de fazer suas alterações, emende seu commit anterior:
 
    ```shell
    git commit -a --amend
    ```
 
-   - `-a`: commits all changes
-   - `--amend`: amends the previous commit, rather than creating a new one
+   - `-a`: inclui todas alterações em um commit 
+   - `--amend`: emenda o commit anterior, em vez de criar um novo
 
-1. Update your commit message if needed.
+2. Atualize sua mensagem de commit, se necessário.
 
-1. Use `git push origin <my_new_branch>` to push your changes and re-run the Netlify tests.
+3. Use `git push origin <minha_nova_branch>` para fazer um push de suas alterações e executar novamente os testes do Netlify.
 
-   {{< note >}}
-   If you use `git commit -m` instead of amending, you must [squash your commits](#squashing-commits)
-   before merging.
+   {{< Observação >}}
+   se você usar `git commit -m` ao invés de emendar, você deverá fazer um [squash dos commits](#squashing-commits) antes de fazer um merge.
    {{< /note >}}
 
-#### Changes from reviewers
+#### Alterações dos revisores
 
-Sometimes reviewers commit to your pull request. Before making any other changes, fetch those commits.
+Às vezes, os revisores fazem um commit no seu pull request. Antes de fazer qualquer outra alteração, agregue esses commits.
 
-1. Fetch commits from your remote fork and rebase your working branch:
+1. Busque (fetch) os commits do seu fork remoto e faça o rebase da sua branch em uso:
 
    ```shell
    git fetch origin
-   git rebase origin/<your-branch-name>
+   git rebase origin/<nome_da_sua_branch>
    ```
 
-1. After rebasing, force-push new changes to your fork:
-
+1. Após o rebasing, force um push das novas alterações em seu fork:
    ```shell
-   git push --force-with-lease origin <your-branch-name>
+   git push --force-with-lease origin <nome_da_sua_branch>
    ```
 
-#### Merge conflicts and rebasing
+#### Fazer o merge de conflitos e rebase
 
-{{< note >}}
-For more information, see [Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts),
-[Advanced Merging](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging), or ask in the
-`#sig-docs` Slack channel for help.
+{{< Observação >}}
+Para mais informações, consulte [Git Branching - Básico de Branching e Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts),
+[Merging Avançado](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging), ou peça ajuda no canal do Slack 
+`#sig-docs`.
 {{< /note >}}
 
-If another contributor commits changes to the same file in another PR, it can create a merge
-conflict. You must resolve all merge conflicts in your PR.
+Se outro colaborador fizer alterações e commits no mesmo arquivo em outro PR, isso poderá criar um conflito de merge. Você deve resolver todos os conflitos de merge em seu PR.
 
-1. Update your fork and rebase your local branch:
+1. Atualize seu fork e rebase sua branch local:
 
    ```shell
    git fetch origin
-   git rebase origin/<your-branch-name>
+   git rebase origin/<nome_da_sua_branch>
    ```
 
-   Then force-push the changes to your fork:
+   Em seguida, force as alterações no seu fork:
 
    ```shell
-   git push --force-with-lease origin <your-branch-name>
+   git push --force-with-lease origin <nome_da_sua_branch>
    ```
 
-1. Fetch changes from `kubernetes/website`'s `upstream/main` and rebase your branch:
+2. Faça um fetch das alterações de `kubernetes/website` `upstream/main` e faça um rebase da sua branch:
 
    ```shell
    git fetch upstream
    git rebase upstream/main
    ```
 
-1. Inspect the results of the rebase:
+3. Inspecione os resultados do rebase:
 
    ```shell
    git status
    ```
 
-   This results in a number of files marked as conflicted.
+   Isso resulta em vários arquivos marcados como conflitantes.
 
-1. Open each conflicted file and look for the conflict markers: `>>>`, `<<<`, and `===`.
-   Resolve the conflict and delete the conflict marker.
+4. Abra cada arquivo em conflito e procure os marcadores de conflito: `>>>`, `<<<`, e `===`.
+   Resolva o conflito e exclua o marcador de conflito.
 
-   {{< note >}}
-   For more information, see [How conflicts are presented](https://git-scm.com/docs/git-merge#_how_conflicts_are_presented).
+   {{< Observação >}}
+   Para mais informações, consulte [Como os conflitos são apresentados](https://git-scm.com/docs/git-merge#_how_conflicts_are_presented).
    {{< /note >}}
 
-1. Add the files to the changeset:
+5. Adicione os arquivos ao changeset:
 
    ```shell
-   git add <filename>
+   git add <nome_do_arquivo>
    ```
 
-1. Continue the rebase:
+6. Continue o rebase:
 
    ```shell
    git rebase --continue
    ```
 
-1. Repeat steps 2 to 5 as needed.
+7. Repita os passos 2 a 5 conforme necessário.
 
-   After applying all commits, the `git status` command shows that the rebase is complete.
+   Depois de aplicar todos os commits, o comando `git status` mostra que o rebase está completo.
 
-1. Force-push the branch to your fork:
+8. Force um push da branch para o seu fork:
 
    ```shell
-   git push --force-with-lease origin <your-branch-name>
+   git push --force-with-lease origin <nome_da_sua_branch>
    ```
 
-   The pull request no longer shows any conflicts.
+   O pull request não deve mostrar mais nenhum conflito.
 
 ### Squashing commits
 
 {{< note >}}
-For more information, see [Git Tools - Rewriting History](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History),
-or ask in the `#sig-docs` Slack channel for help.
+Para mais informações, consulte [Ferramentas Git - Reescreve o histórico](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History),
+ou peça ajuda no canal do Slack `#sig-docs`.
 {{< /note >}}
 
-If your PR has multiple commits, you must squash them into a single commit before merging your PR.
-You can check the number of commits on your PR's **Commits** tab or by running the `git log`
-command locally.
+Se seu PR tiver vários commits, você deve fazer um squash em um único commit antes de fazer um merge do seu PR.
+Você pode verificar o número de commits na guia de **Commits** do seu PR ou executando localmente o comando `git log`.
 
 {{< note >}}
-This topic assumes `vim` as the command line text editor.
+Este tópico assume `vim` como editor de texto de linha de comando.
 {{< /note >}}
 
-1. Start an interactive rebase:
+1. Inicie um rebase interativo:
 
    ```shell
-   git rebase -i HEAD~<number_of_commits_in_branch>
+   git rebase -i HEAD~<número_de_commits_na_branch>
    ```
 
-   Squashing commits is a form of rebasing. The `-i` switch tells git you want to rebase interactively.
-   `HEAD~<number_of_commits_in_branch` indicates how many commits to look at for the rebase.
+   Fazer o squash de commits é uma forma de rebase. O `-i` diz ao git que você deseja fazer o rebase interativamente.
+   `HEAD~<número_de_commits_na_branch>` indica quantos commits devem ser observados para o rebase.
 
-   Output is similar to:
+   O resultado deve ser semelhante à:
 
    ```none
    pick d875112ca Original commit
@@ -561,22 +542,21 @@ This topic assumes `vim` as the command line text editor.
 
    ...
 
-   # These lines can be re-ordered; they are executed from top to bottom.
+   # Estas linhas podem ser reorganizadas; elas são executadas de cima para baixo.
    ```
 
-   The first section of the output lists the commits in the rebase. The second section lists the
-   options for each commit. Changing the word `pick` changes the status of the commit once the rebase
-   is complete.
+  A primeira seção de resultados lista os commits do rebase. A segunda seção lista as opções para cada commit. 
+  Alterar a palavra `pick` altera o status do commit assim que o rebase for concluído.
 
-   For the purposes of rebasing, focus on `squash` and `pick`.
+   Para fins de rebase, concentre-se em `squash` e `pick`.
 
    {{< note >}}
-   For more information, see [Interactive Mode](https://git-scm.com/docs/git-rebase#_interactive_mode).
+   Para mais informações, consulte [Modo Interativo](https://git-scm.com/docs/git-rebase#_interactive_mode).
    {{< /note >}}
 
-1. Start editing the file.
+2. Comece a editar o arquivo.
 
-   Change the original text:
+   Altere o texto original:
 
    ```none
    pick d875112ca Original commit
@@ -584,7 +564,7 @@ This topic assumes `vim` as the command line text editor.
    pick 7d54e15ee Address feedback 2
    ```
 
-   To:
+   Para:
 
    ```none
    pick d875112ca Original commit
@@ -592,33 +572,28 @@ This topic assumes `vim` as the command line text editor.
    squash 7d54e15ee Address feedback 2
    ```
 
-   This squashes commits `4fa167b80 Address feedback 1` and `7d54e15ee Address feedback 2` into
-   `d875112ca Original commit`, leaving only `d875112ca Original commit` as a part of the timeline.
+   Isso faz um squash dos commits `4fa167b80 Address feedback 1` e `7d54e15ee Address feedback 2` em
+   `d875112ca Original commit`, deixando apenas `d875112ca Original commit` como parte da linha do tempo(timeline).
 
-1. Save and exit your file.
+3. Salve e feche o arquivo.
 
-1. Push your squashed commit:
+4. Faça um push do seu commit squashed:
 
    ```shell
-   git push --force-with-lease origin <branch_name>
+   git push --force-with-lease origin <nome_da_branch>
    ```
 
-## Contribute to other repos
+## Contribua para outros repositórios
 
-The [Kubernetes project](https://github.com/kubernetes) contains 50+ repositories. Many of these
-repositories contain documentation: user-facing help text, error messages, API references or code
-comments.
+O [projeto Kubernetes](https://github.com/kubernetes) contém mais de 50 repositórios. Muitos desses repositórios contêm documentação: texto de ajuda voltado para o usuário, mensagens de erro, referências de API ou comentários de código.
 
-If you see text you'd like to improve, use GitHub to search all repositories in the Kubernetes
-organization. This can help you figure out where to submit your issue or PR.
+Se você vir um texto que gostaria de melhorar, use o GitHub para pesquisar todos os repositórios na organização do Kubernetes. Isso pode ajudá-lo a descobrir onde abrir seu issue ou PR.
 
-Each repository has its own processes and procedures. Before you file an issue or submit a PR,
-read that repository's `README.md`, `CONTRIBUTING.md`, and `code-of-conduct.md`, if they exist.
+Cada repositório tem seus próprios processos e procedimentos. Antes de registrar um issue ou abrir um PR
+leia o `README.md`, `CONTRIBUTING.md`, e `code-of-conduct.md`, daquele repositório, caso eles existam.
 
-Most repositories use issue and PR templates. Have a look through some open issues and PRs to get
-a feel for that team's processes. Make sure to fill out the templates with as much detail as
-possible when you file issues or PRs.
+A maioria dos repositórios usa um modelos para issues e PR. HDê uma olhada em alguns issues em aberto e PRs para ter uma ideia dos processos dessa equipe. Certifique-se de preencher os modelos com o máximo de detalhes possível ao registrar issues ou PRs.
 
 ## {{% heading "whatsnext" %}}
 
-- Read [Reviewing](/docs/contribute/review/reviewing-prs) to learn more about the review process.
+- Leia [Revisão](/docs/contribute/review/reviewing-prs) para saber mais sobre o processo de revisão.
